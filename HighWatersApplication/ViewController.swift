@@ -30,7 +30,8 @@ class ViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
         self.locationManager.distanceFilter = kCLDistanceFilterNone
         
         self.locationManager.requestWhenInUseAuthorization()
-        
+        self.locationManager.requestAlwaysAuthorization()
+
         self.locationManager.startUpdatingLocation()
         
         self.mapView.showsUserLocation = true
