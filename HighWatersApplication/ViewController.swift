@@ -71,7 +71,8 @@ class ViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
     
     
     override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
-        let highWatersAnnotation = MKPointAnnotation()
+        if motion == .MotionShake {
+            let highWatersAnnotation = MKPointAnnotation()
         highWatersAnnotation.title = "Warning!"
         highWatersAnnotation.coordinate = self.mapView.userLocation.coordinate
         
@@ -83,7 +84,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
         self.publicDB.saveRecord(pinPointedRecord) { (record: CKRecord?, error: NSError?) in }
         self.mapView.addAnnotation(highWatersAnnotation)
     }
-    
+    }
     func mapView(mapView: MKMapView, didAddAnnotationViews views: [MKAnnotationView]) {
         if let annotationView = views.first {
             if let annotation = annotationView.annotation {
